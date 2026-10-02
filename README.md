@@ -1,6 +1,307 @@
-# Craik-Computational-Usergroup
+# Craik Computational Usergroup
 
-Erika- output
+A practice repo and cheatsheet from our first session (2 October 2026), where everyone set up git, logged in to GitHub, and pushed their first commits.
+
+This page assumes you have never used git or the command line. Everything is for a Mac, typed into the **Terminal** app. The examples marked *from our session* are real moments from [Erika's terminal log](#erikas-full-terminal-log), which is kept in full at the bottom of the page.
+
+- [The idea in one minute](#the-idea-in-one-minute)
+- [Command line basics](#command-line-basics)
+- [One-time setup](#one-time-setup)
+- [Getting the repo](#getting-the-repo)
+- [The everyday loop](#the-everyday-loop)
+- [Git cheatsheet](#git-cheatsheet)
+- [When things go wrong](#when-things-go-wrong)
+- [Erika's full terminal log](#erikas-full-terminal-log)
+
+## The idea in one minute
+
+Git saves snapshots of a folder so you can see what changed, when, and who changed it. GitHub keeps a shared copy online so a group can trade those snapshots.
+
+```
+edit files ──git add──▶ staging ──git commit──▶ your history ──git push──▶ GitHub
+                                                your history ◀──git pull── GitHub
+```
+
+| Word | What it means |
+| --- | --- |
+| repository (repo) | A folder that git is tracking. |
+| commit | One saved snapshot, with a short message describing it. |
+| staging | The list of changes you have picked for the next commit. |
+| remote | The shared copy on GitHub. |
+| clone | Download a repo from GitHub for the first time. |
+| push | Send your commits up to GitHub. |
+| pull | Bring everyone else's commits down to your computer. |
+
+## Command line basics
+
+The terminal shows a prompt and waits for you to type a command and press Enter:
+
+```
+ekcota@Erikas-MBP-2 Craik-Computational-Usergroup %
+```
+
+That reads as *user* `@` *computer*, then the folder you are in, then `%`. You type after the `%`. In the examples below, type only the command, not the prompt.
+
+| Command | What it does |
+| --- | --- |
+| `pwd` | Show which folder you are in. |
+| `ls` | List the files in this folder. |
+| `cd Projects` | Move into the folder called `Projects`. |
+| `cd ..` | Move up one folder. |
+| `cd ~` | Go to your home folder. |
+| `mkdir Projects` | Make a new folder called `Projects`. |
+| `cat README.md` | Print a file's contents. |
+| `nano notes.md` | Open a file in a simple editor, creating it if it doesn't exist. |
+
+In `nano`, press `Ctrl+O` then Enter to save, and `Ctrl+X` to exit.
+
+Habits that save a lot of trouble:
+
+- **Press Tab to finish names.** Type the first few letters of a file or folder and press Tab. *From our session:* `cd C` failed with `cd: no such file or directory: C` because the name has to be complete. `cd C` followed by Tab fills in `cd Craik-Computational-Usergroup`.
+- **Spaces matter.** *From our session:* `gitadd.` gave `zsh: command not found: gitadd.` because it is three separate words: `git add .`
+- **Avoid spaces in file names.** This repo has a file called `I like wet lab`, and to read it you need quotes: `cat "I like wet lab"`. A name like `wet-lab.md` is easier to work with.
+- **Press the up arrow** to bring back earlier commands instead of retyping them.
+- **Press `Ctrl+C`** to cancel whatever is running and get your prompt back.
+- **Passwords stay invisible.** When the terminal asks for your Mac password, nothing appears as you type. Type it and press Enter.
+- **`command not found`** means a typo, or that the tool isn't installed yet.
+
+## One-time setup
+
+Do these once per computer.
+
+**1. Check that git is installed.**
+
+```
+git --version
+```
+
+If your Mac offers to install the command line developer tools, say yes.
+
+**2. Install Homebrew**, which installs other tools for you.
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+When it finishes it prints a few lines under **Next steps**. Copy those lines and run them, or `brew` will not be found (see [below](#brew-is-not-found-right-after-installing-it)).
+
+**3. Install the GitHub command line tool.**
+
+```
+brew install gh
+```
+
+**4. Log in to GitHub.**
+
+```
+gh auth login
+```
+
+Pick these answers, then paste the one-time code into the browser page that opens:
+
+```
+? Where do you use GitHub? GitHub.com
+? What is your preferred protocol for Git operations on this host? HTTPS
+? Authenticate Git with your GitHub credentials? Yes
+? How would you like to authenticate GitHub CLI? Login with a web browser
+```
+
+**5. Tell git who you are.** Use the email address on your GitHub account so your commits link to your profile.
+
+```
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+**6. Choose how `git pull` combines work.** This picks the simplest option, a merge.
+
+```
+git config --global pull.rebase false
+```
+
+**7. Optional: make `nano` the editor git opens** when it needs you to type a message.
+
+```
+git config --global core.editor nano
+```
+
+Check your settings any time with `git config --global --list`.
+
+## Getting the repo
+
+Clone it once, into whichever folder you keep projects in:
+
+```
+cd ~/Projects
+git clone https://github.com/kalestew/Craik-Computational-Usergroup.git
+cd Craik-Computational-Usergroup
+```
+
+After that the folder stays on your computer. Use `git pull` to update it; you don't clone again. To push to this repo, the owner has to add your GitHub account as a collaborator.
+
+## The everyday loop
+
+Run these from inside the repo folder.
+
+```
+git pull                        # 1. get everyone else's changes first
+nano my-notes.md                # 2. make or edit files
+git status                      # 3. see what changed
+git add my-notes.md             # 4. pick what goes in the snapshot
+git commit -m "Add my notes"    # 5. save the snapshot with a message
+git push                        # 6. send it to GitHub
+```
+
+- `git status` is always safe and tells you where you are. Run it whenever you are unsure.
+- `git add .` adds every change in the current folder. The `.` means "here". Naming a file adds only that file.
+- The commit message goes in quotes after `-m`. Say what you changed: `"Add PCR protocol notes"` will mean more to you next month than `"update"`.
+- Nothing reaches GitHub until you `git push`.
+
+## Git cheatsheet
+
+| Command | What it does |
+| --- | --- |
+| `git clone <url>` | Download a repo for the first time. |
+| `git status` | Show what has changed and what is staged. |
+| `git add <file>` | Stage one file for the next commit. |
+| `git add .` | Stage every change in the current folder. |
+| `git commit -m "message"` | Save the staged changes as a snapshot. |
+| `git push` | Send your commits to GitHub. |
+| `git pull` | Bring down and merge other people's commits. |
+| `git diff` | Show changes you have not staged yet. |
+| `git log --oneline` | List past commits, one per line. Press `q` to exit. |
+| `git log --oneline --graph` | The same, with lines showing where work was merged. |
+
+## When things go wrong
+
+Every message here came up in our session.
+
+### `git add` with nothing after it
+
+```
+% git add
+Nothing specified, nothing added.
+hint: Maybe you wanted to say 'git add .'?
+```
+
+Git needs to know what to add. Name a file, or use `git add .` for everything.
+
+### `git commit` says there is nothing to commit
+
+```
+% git commit
+Untracked files:
+	testing
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+You made a file but haven't staged it. Run `git add` first, then commit.
+
+### `git commit` complains about an editor
+
+```
+% git commit
+error: there was a problem with the editor 'vi'
+Please supply the message using either -m or -F option.
+```
+
+Without `-m`, git opens a text editor for the message. Give the message on the same line instead: `git commit -m "your message"`.
+
+If you end up in a full-screen editor that ignores normal typing, you are in `vi`. Press `Esc`, type `:wq`, and press Enter to save and leave. Setup step 7 swaps it for `nano`.
+
+### `git push` asks for a username and password, then fails
+
+```
+% git push
+Username for 'https://github.com': ekcotas
+Password for 'https://ekcotas@github.com':
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed
+```
+
+GitHub does not accept your account password in the terminal. Press `Ctrl+C` to get out of the prompt, log in with `gh auth login` (setup step 4), then push again.
+
+### `gh login` is an unknown command
+
+```
+% gh login
+unknown command "login" for "gh"
+```
+
+The command is `gh auth login`.
+
+### `brew` is not found right after installing it
+
+```
+% brew
+zsh: command not found: brew
+```
+
+The installer finished but your terminal doesn't know where `brew` lives yet. Scroll up to **Next steps** in the installer's output and run the lines it lists. They look like this:
+
+```
+echo >> ~/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+```
+
+### `git push` is rejected
+
+```
+% git push
+ ! [rejected]        main -> main (fetch first)
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally.
+```
+
+Someone else pushed before you. Nothing is broken. Run `git pull` to bring their work in, then `git push` again.
+
+### `git pull` says the branches are divergent
+
+```
+% git pull
+hint: You have divergent branches and need to specify how to reconcile them.
+fatal: Need to specify how to reconcile divergent branches.
+```
+
+You and someone else both made commits, and git wants to know how to combine them. Choose merge once (setup step 6) and pull again:
+
+```
+git config --global pull.rebase false
+git pull
+```
+
+Git then makes a "merge commit" that joins the two histories:
+
+```
+% git pull
+Merge made by the 'ort' strategy.
+ I like wet lab | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+### Git made up a name and email for you
+
+```
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+```
+
+The commit worked, but it is labelled with your computer's name instead of your GitHub account. Set your name and email (setup step 5) so later commits are labelled properly.
+
+### `git pull` says CONFLICT
+
+We didn't run into this one, because everybody edited different files. It happens when two people change the same lines of the same file, and git needs a person to choose which version to keep. Ask for help the first time; it is easier to learn with someone next to you.
+
+## Erika's full terminal log
+
+Erika's terminal from the session, start to finish: cloning the repo, making a file, the first commit, installing Homebrew and `gh`, logging in, and finally pulling, merging and pushing.
+
+<details>
+<summary>Show the full log</summary>
+
+```text
 Last login: Fri Oct  2 13:25:45 on ttys000
 ekcota@Erikas-MBP-2 ~ % 
 ekcota@Erikas-MBP-2 ~ % cd /Users/ekcota/Projects
@@ -330,4 +631,6 @@ To https://github.com/kalestew/Craik-Computational-Usergroup.git
 ekcota@Erikas-MBP-2 Craik-Computational-Usergroup % ls
 I like wet lab	README.md	testing
 ekcota@Erikas-MBP-2 Craik-Computational-Usergroup % 
+```
 
+</details>
