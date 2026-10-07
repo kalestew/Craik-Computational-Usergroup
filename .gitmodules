@@ -1,0 +1,4 @@
+[submodule "corehpc"]
+	path = corehpc
+	url = https://github.com/kalestew/Craik-CoreHPC.git
+	branch = main
