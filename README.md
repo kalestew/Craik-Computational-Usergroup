@@ -2,6 +2,10 @@
 
 Notes, cheatsheets and step-by-step setup guides from the Craik Lab's weekly computational usergroup. Everything is written for someone who has never used a terminal, on a Mac. Each session gets its own page, and the cheatsheets collect the commands from all of them.
 
+## When and where
+
+Every **Friday, 1:00 to 2:30 PM**, in **Conf Room GH-S536A**. The room is booked for us as a weekly series; the next one is Friday 16 October 2026. Bring your laptop and its charger. If you can't make it, the session page goes up the same day, so you can follow it on your own and ask questions in the next one.
+
 ## Sessions
 
 | Session | Date | What we did |
