@@ -1,0 +1,35 @@
+# Craik Computational Usergroup: the tools we install in session 2.
+#
+# Install everything listed here in one go, from the top folder of this repo:
+#
+#     brew bundle --file=setup/Brewfile
+#
+# Lines starting with # are comments. Delete the # at the start of a line to turn it on.
+
+# --- git and GitHub -----------------------------------------------------------
+brew "git"        # a newer git than the one Apple ships
+brew "gh"         # GitHub from the terminal (session 1)
+
+# --- a friendlier shell -------------------------------------------------------
+brew "fzf"                      # fuzzy finder: Ctrl+R searches your history
+brew "zsh-autosuggestions"      # grey suggestions from your history as you type
+brew "zsh-syntax-highlighting"  # commands turn green if they exist, red if they don't
+
+# --- better versions of everyday commands -------------------------------------
+brew "eza"        # ls, with colours and a tree view
+brew "bat"        # cat, with colours and line numbers
+brew "fd"         # find, but simple
+brew "ripgrep"    # grep, but fast and friendly (the command is rg)
+brew "tree"       # draw a folder as a tree
+brew "tlrc"       # tldr: short examples instead of long manual pages
+brew "htop"       # what is my computer doing right now
+brew "wget"       # download a file from a URL
+brew "jq"         # read and filter JSON
+
+# --- python -------------------------------------------------------------------
+brew "uv"         # Python versions, environments and packages in one tool
+
+# --- optional editors and apps ------------------------------------------------
+# brew "micro"                  # a terminal editor with normal shortcuts (Ctrl+S saves, Ctrl+Q quits)
+# cask "visual-studio-code"     # VS Code. Skip if you already have it in /Applications.
+# cask "iterm2"                 # a nicer Terminal app

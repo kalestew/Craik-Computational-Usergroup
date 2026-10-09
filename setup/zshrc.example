@@ -1,0 +1,67 @@
+# ~/.zshrc  runs every time you open a terminal window.
+#
+# Starter file from the Craik Computational Usergroup (session 2). Put it in place with
+#
+#     cp setup/zshrc.example ~/.zshrc
+#     source ~/.zshrc
+#
+# Lines starting with # are comments. Edit anything; it is your file now.
+
+# --- Homebrew -----------------------------------------------------------------
+# Lets the shell find tools installed with brew. The installer also puts this in
+# ~/.zprofile; having it here as well is harmless.
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv zsh)"        # Apple silicon
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv zsh)"           # Intel
+fi
+
+# --- Oh My Zsh ----------------------------------------------------------------
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"     # the default: shows the folder and the git branch
+plugins=(git)                # git adds short aliases: gst = git status, gp = git push, gl = git pull
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then
+  source "$ZSH/oh-my-zsh.sh"
+fi
+
+# --- fzf: Ctrl+R searches your history, Ctrl+T picks a file --------------------
+if command -v fzf >/dev/null; then
+  source <(fzf --zsh)
+fi
+
+# --- History ------------------------------------------------------------------
+HISTSIZE=100000
+SAVEHIST=100000
+setopt SHARE_HISTORY         # every terminal window sees the same history
+setopt HIST_IGNORE_ALL_DUPS  # keep one copy of a repeated command
+
+# --- Aliases: short names for commands you type a lot -------------------------
+alias ll='eza -la --git'           # long list, hidden files, git status
+alias lt='eza --tree --level=2'    # the folder as a tree, two levels deep
+alias ..='cd ..'
+alias ...='cd ../..'
+alias proj='cd ~/Projects'
+alias ug='cd ~/Projects/Craik-Computational-Usergroup'
+# Uncomment these if you want the new tools every time you type the old names:
+# alias ls='eza'
+# alias cat='bat --paging=never'
+
+# --- Editor -------------------------------------------------------------------
+export EDITOR=nano           # what git opens when it needs a message from you
+
+# --- uv -----------------------------------------------------------------------
+export PATH="$HOME/.local/bin:$PATH"   # tools installed with `uv tool install` live here
+
+# --- Suggestions and highlighting (installed with brew) -------------------------
+# These two stay at the bottom; the highlighter has to load last.
+if command -v brew >/dev/null; then
+  BREW_PREFIX="$(brew --prefix)"
+  # Grey text after the cursor is a suggestion from your history. Press the right arrow to accept it.
+  if [ -f "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  fi
+  # Commands turn green when they exist and red when they don't.
+  if [ -f "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  fi
+fi
