@@ -2,7 +2,7 @@
 
 ← [All sessions](../README.md)
 
-Our second session (9 October 2026). Last time most of us met the terminal for the first time, and a lot of it felt bare: no colours, no hints, no way to search what you typed before, and tools that weren't installed. Today we fix that. Everything here is for a Mac, in the **Terminal** app, which runs a shell called **zsh**.
+Our second session (16 October 2026). Last time most of us met the terminal for the first time, and a lot of it felt bare: no colours, no hints, no way to search what you typed before, and tools that weren't installed. Today we fix that. Everything here is for a Mac, in the **Terminal** app, which runs a shell called **zsh**.
 
 By the end you will have:
 
@@ -10,7 +10,7 @@ By the end you will have:
 - Homebrew, and a dozen command-line tools installed with one command
 - a shell that shows the git branch in the prompt, suggests commands from your history, and colours what you type green or red
 - Python set up with `uv`, with your first project and your first plot
-- the handful of Unix commands that make a CSV file answer questions
+- the handful of Unix commands for searching, slicing and counting a CSV file
 
 Contents:
 
@@ -20,14 +20,14 @@ Contents:
 - [3. A friendlier shell](#3-a-friendlier-shell)
 - [4. A tour of the new tools](#4-a-tour-of-the-new-tools)
 - [5. Python with uv](#5-python-with-uv)
-- [6. Unix essentials: making a CSV answer questions](#6-unix-essentials-making-a-csv-answer-questions)
+- [6. Unix essentials: searching, slicing and counting a CSV](#6-unix-essentials-searching-slicing-and-counting-a-csv)
 - [7. Check that it all worked](#7-check-that-it-all-worked)
 - [When things go wrong](#when-things-go-wrong)
 - [Before next time](#before-next-time)
 
 ## Before we start: update the repo
 
-Open Terminal, go to the repo and pull. The repo was reorganised this week and gained a submodule, so there is one extra command after `git pull`.
+Open Terminal, go to the repo and pull. The repo was reorganised after session 1 and gained a submodule, so there is one extra command after `git pull`.
 
 ```
 cd ~/Projects/Craik-Computational-Usergroup
@@ -340,7 +340,7 @@ Three habits, and the [uv cheatsheet](../cheatsheets/uv.md) has the rest:
 - Always `uv run script.py`, never `python script.py`. The second one uses whatever Python the shell finds first, which is not your project's.
 - One folder per project. Two projects never share an environment.
 
-## 6. Unix essentials: making a CSV answer questions
+## 6. Unix essentials: searching, slicing and counting a CSV
 
 The Unix idea is small commands that each do one thing, joined with `|` so the output of one becomes the input of the next. Back in the repo:
 

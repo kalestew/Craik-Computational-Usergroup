@@ -4,14 +4,14 @@ Notes, cheatsheets and step-by-step setup guides from the Craik Lab's weekly com
 
 ## When and where
 
-Every **Friday, 1:00 to 2:30 PM**, in **Conf Room GH-S536A**. The room is booked for us as a weekly series; the next one is Friday 16 October 2026. Bring your laptop and its charger. If you can't make it, the session page goes up the same day, so you can follow it on your own and ask questions in the next one.
+Every **Friday, 1:00 to 2:30 PM**, in **Conf Room GH-S536A**. The room is booked for us as a weekly series; Session 2 is Friday 16 October 2026, and the one after that is 23 October. Bring your laptop and its charger. If you can't make it, the session page goes up the same day, so you can follow it on your own and ask questions in the next one.
 
 ## Sessions
 
 | Session | Date | What we did |
 | --- | --- | --- |
 | [1. Git and GitHub](sessions/01-git-basics.md) | 2 October 2026 | Installed git and Homebrew, logged in to GitHub, cloned this repo and pushed a first commit. |
-| [2. Setting up your Mac](sessions/02-shell-setup.md) | 9 October 2026 | Homebrew and a dozen command-line tools, a friendlier shell with Oh My Zsh, Python with uv, and the Unix commands that make a CSV answer questions. |
+| [2. Setting up your Mac](sessions/02-shell-setup.md) | 16 October 2026 | Homebrew and a dozen command-line tools, a friendlier shell with Oh My Zsh, Python with uv, and the Unix essentials for searching, slicing and counting a CSV. |
 
 Every session page has the same shape: what to do before you start, the steps we do together with a check after each, a "When things go wrong" list of the real error messages, and what to do before next time. [sessions/TEMPLATE.md](sessions/TEMPLATE.md) is the blank.
 
